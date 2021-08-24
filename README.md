@@ -8,4 +8,4 @@ $ flask run
 ```
 
 ## Walkthrough
-https://drive.google.com/file/d/1T13B8VodBhIMZ6_J5xi1KPvV3G1yJ0qv/view?usp=sharing
+https://youtu.be/fq6npN-2PZQ
