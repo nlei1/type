@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Social
+{% endblock %}
+
+{% block main %}
+    <h1>Social.</h1>
+    <br>
+    <p class='text-center'>See how your classmates are doing!</p>
+    <br>
+    <div class="container col-md-6">
+        {% for post in posts %}
+          <div class="card text-left ">
+
+              <div class="card-body">
+                  <p class='small'><mark>{{ post.username }}</mark> · {{ post.timemstamp }}</p>
+                <blockquote class="blockquote mb-0">
+                  <p>{{ post.content }}</p>
+                </blockquote>
+              </div>
+
+
+          </div>
+          <br>
+        {% endfor %}
+
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+    <h1 class='text-center main-page'>TY¶E</h1>
+
+    <p class='text-center'>The modern typewriter for learners.</p>
+    <br>
+    <div class="row justify-content-center">
+        <form action="/login" method="post" class='col-md-3 col-md-offset-3'>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Project" type="text">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+    </div>
+
+{% endblock %}

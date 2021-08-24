@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Overview
+{% endblock %}
+
+{% block main %}
+<h1 class="text-center">Essay Overview.</h1>
+<br>
+
+<p class='text-center'>To create a new paragraph, navigate to 'Add Topic.' If you would like to add content to a previously added topic, click on 'Write.'</p>
+<br>
+<hr>
+<br>
+
+<div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      {% for paragraph in paragraphs %}
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-{{ paragraph.id }}" role="tab" >{{ paragraph.topic }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content">
+      {% for paragraph in paragraphs %}
+        <div class="tab-pane fade text-left" id="list-{{ paragraph.id }}" role="tabpanel">
+            <p>{{ paragraph.content }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

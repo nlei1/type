@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Version Control
+{% endblock %}
+
+{% block main %}
+    <h1>Version Control.</h1>
+    <br>
+    <p class='text-center'>Your progress ;)</p>
+    <br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Topic</th>
+                <th>Content</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paragraph in paragraphs %}
+                <tr>
+                    <td>{{ paragraph.topic }}</td>
+                    <td>{{ paragraph.content }}</td>
+                    <td>{{ paragraph.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

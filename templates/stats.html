@@ -1,0 +1,195 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stats
+{% endblock %}
+
+{% block main %}
+<h1 class="text-center">Your work.</h1>
+<br>
+
+<div class='text-left'>
+    {% for paragraph in paragraphs %}
+    <p>{{ paragraph.content }}</p>
+    {% endfor %}
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<h1 class="text-center">Stats about your work.</h1>
+<br>
+<div class='text-left'>
+
+    <div class="row">
+    <div class='col-sm-4'>
+    <h3>Word Stats</h3>
+
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Word count
+          <span class="badge bg-primary rounded-pill">{{basics_facts.word_count}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Character count
+          <span class="badge bg-primary rounded-pill">{{basics_facts.char_count}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Syllables
+          <span class="badge bg-primary rounded-pill">{{facts.syllables}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Sentences
+          <span class="badge bg-primary rounded-pill">{{facts.sentences}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Flesch Reading Ease Index
+          <span class="badge bg-primary rounded-pill">{{facts.flesch}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Flesch-Kincaid Grade Level
+          <span class="badge bg-primary rounded-pill">{{facts.kincaid}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Gunning FOG Formula Scale
+          <span class="badge bg-primary rounded-pill">{{facts.fog}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          SMOG Index
+          <span class="badge bg-primary rounded-pill">{{facts.smog}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Automated Readability Index
+          <span class="badge bg-primary rounded-pill">{{facts.automated}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Coleman-Liau Index
+          <span class="badge bg-primary rounded-pill">{{facts.coleman}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Linsear Write Formula
+          <span class="badge bg-primary rounded-pill">{{facts.linsear}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Dale-Chall Readability Score
+          <span class="badge bg-primary rounded-pill">{{facts.dale}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Readability
+          <span class="badge bg-primary rounded-pill">{{facts.consensus}}</span>
+        </li>
+      </ul>
+
+    <hr><br>
+    <h3>Sentiment Analysis</h3>
+    <div id="accordion4">
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapsePolarity">
+        Polarity Score
+      </a>
+    </div>
+    <div id="collapsePolarity" class="collapse" data-parent="#accordion4">
+      <div class="card-body">
+        <h3>{{ sentiment.polarity }}</h3>
+        <p><small>range: [-1.0, 1.0]</small></p>
+        <a href="https://www.kdnuggets.com/2018/08/emotion-sentiment-analysis-practitioners-guide-nlp-5.html" class="btn btn-info">Learn more</a>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapseSubjectivity">
+        Subjectivity Score
+      </a>
+    </div>
+    <div id="collapseSubjectivity" class="collapse" data-parent="#accordion4">
+      <div class="card-body">
+        <h3>{{ sentiment.subjectivity }}</h3>
+        <p><small>range: [0.0, 1.0]</small></p>
+        <a href="https://www.kdnuggets.com/2018/08/emotion-sentiment-analysis-practitioners-guide-nlp-5.html" class="btn btn-info">Learn more</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    <div class="col-sm-8">
+    <h3>Named Entity Recognition</h3>
+     <div id="accordion1">
+        {% for category in entities %}
+          <div class="card">
+            <div class="card-header">
+              <a class="card-link" data-toggle="collapse" href="#collapse{{category}}">
+               {{category}}
+              </a>
+            </div>
+            <div id="collapse{{category}}" class="collapse" data-parent="#accordion1">
+              <div class="card-body">
+
+
+
+                    {% for item in entities[category] %}
+                          <p>{{ item }} </p>
+                    {% endfor %}
+
+              </div>
+            </div>
+          </div>
+         {% endfor %}
+        </div>
+
+    <hr><br>
+    <h3>Research Wizard</h3>
+    <div id="accordion2">
+    {% for word in research_wiz %}
+      <div class="card">
+        <div class="card-header">
+          <a class="card-link" data-toggle="collapse" href="#collapse{{loop.index}}">
+            {{word}}
+          </a>
+        </div>
+        <div id="collapse{{loop.index}}" class="collapse" data-parent="#accordion2">
+          <div class="card-body">
+                    {% for item in research_wiz[word] %}
+                          <p>{{ item }} </p>
+                    {% endfor %}
+          </div>
+        </div>
+      </div>
+     {% endfor %}
+    </div>
+
+    <hr><br>
+    <h3>Spelling Suggestions</h3>
+    <div id="accordion3">
+    {% for word in suggestions %}
+      <div class="card">
+        <div class="card-header">
+          <a class="card-link" data-toggle="collapse" href="#collapse{{word}}">
+            {{word}}
+          </a>
+        </div>
+        <div id="collapse{{word}}" class="collapse" data-parent="#accordion3">
+          <div class="card-body">
+                    {% for item in suggestions[word] %}
+                          <p>{{ item }} </p>
+                    {% endfor %}
+          </div>
+        </div>
+      </div>
+     {% endfor %}
+    </div>
+
+    </div>
+    </div>
+<hr>
+
+
+
+
+</div>
+
+
+{% endblock %}

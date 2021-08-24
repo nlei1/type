@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Share
+{% endblock %}
+
+{% block main %}
+    <h1>Share your status.</h1>
+    <br>
+    <p class='text-center'>E.g., yay just finished outlining!</p>
+    <br>
+    <div class="row justify-content-center">
+        <form action="/share" method="post" class='col-md-6 col-md-offset-6'>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="topic" placeholder="Type here!" type="text">
+            </div>
+            <button class="btn btn-primary" type="submit">Share</button>
+        </form>
+    </div>
+{% endblock %}
